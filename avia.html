@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aviakassa — Oks Tours</title>
+    <link rel="icon" type="image/png" href="icoLogo.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="avia-page">
+    <header class="hero">
+      <div class="hero-content">
+        <div class="language-switcher">
+          <button id="langRu" class="lang-btn active">РУ</button>
+          <button id="langUz" class="lang-btn">UZ</button>
+        </div>
+        <img src="png02.png" alt="Oks Tours" class="logo" />
+        <p
+          data-ru="Оставьте отзыв о нашей авиакассе!"
+          data-uz="Aviabilet xizmatimiz haqida fikringizni bildiring!"
+        >
+          Оставьте отзыв о нашей авиакассе!
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Прогресс-бар -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <span class="progress-bar-text" id="progressText" data-ru-template="Заполнено: {n} из {total}" data-uz-template="To'ldirilgan: {n} / {total}">Заполнено: 0 из 7</span>
+      </div>
+
+      <section class="feedback-form-section">
+        <h2
+          data-ru='Авиакасса "Oks Tours"'
+          data-uz='"Oks Tours" aviakassasi'
+        >
+          Авиакасса "Oks Tours"
+        </h2>
+        <p
+          data-ru='Уважаемый клиент! Благодарим вас за выбор авиакассы "Oks Tours"! Ваше мнение очень важно для нас. Пожалуйста, уделите пару минут и ответьте на несколько вопросов.'
+          data-uz='Hurmatli mijoz! "Oks Tours" aviakassasini tanlaganingiz uchun rahmat! Sizning fikringiz biz uchun juda muhim. Iltimos, bir necha daqiqa ajrating va quyidagi savollarga javob bering.'
+        >
+          Уважаемый клиент! Благодарим вас за выбор авиакассы "Oks Tours"! Ваше мнение очень важно для нас. Пожалуйста, уделите пару минут и ответьте на несколько вопросов.
+        </p>
+
+        <form id="feedbackForm">
+          <h3
+            data-ru="1. Насколько наш сервис при покупке авиабилета соответствовал вашим ожиданиям?"
+            data-uz="1. Aviabilet xarid qilishda ko'rsatilgan xizmatimiz siz kutgan darajaga qanchalik mos keldi?"
+          >
+            1. Насколько наш сервис при покупке авиабилета соответствовал вашим ожиданиям?
+          </h3>
+          <div class="form-group">
+            <input type="radio" id="q1_1" name="q1_service" value="Превзошёл ожидания" required />
+            <label for="q1_1" data-ru="Превзошёл ожидания" data-uz="Kutganimdan ham yuqori">Превзошёл ожидания</label><br />
+            <input type="radio" id="q1_2" name="q1_service" value="Полностью соответствовал" />
+            <label for="q1_2" data-ru="Полностью соответствовал" data-uz="To'liq mos keldi">Полностью соответствовал</label><br />
+            <input type="radio" id="q1_3" name="q1_service" value="Частично соответствовал" />
+            <label for="q1_3" data-ru="Частично соответствовал" data-uz="Qisman mos keldi">Частично соответствовал</label><br />
+            <input type="radio" id="q1_4" name="q1_service" value="Не соответствовал" />
+            <label for="q1_4" data-ru="Не соответствовал" data-uz="Mos kelmadi">Не соответствовал</label>
+          </div>
+
+          <h3
+            data-ru="2. Насколько понятной и полезной была информация и варианты рейсов, предложенные менеджером?"
+            data-uz="2. Menejer tomonidan berilgan ma'lumotlar va taklif qilingan reys variantlari siz uchun qanchalik tushunarli va foydali bo'ldi?"
+          >
+            2. Насколько понятной и полезной была информация и варианты рейсов, предложенные менеджером?
+          </h3>
+          <div class="form-group">
+            <input type="radio" id="q2_1" name="q2_info" value="Очень понятно и полезно" required />
+            <label for="q2_1" data-ru="Очень понятно и полезно" data-uz="Juda aniq va foydali">Очень понятно и полезно</label><br />
+            <input type="radio" id="q2_2" name="q2_info" value="Достаточно" />
+            <label for="q2_2" data-ru="Достаточно" data-uz="Yetarli darajada">Достаточно</label><br />
+            <input type="radio" id="q2_3" name="q2_info" value="Частично понятно" />
+            <label for="q2_3" data-ru="Частично понятно" data-uz="Qisman tushunarli">Частично понятно</label><br />
+            <input type="radio" id="q2_4" name="q2_info" value="Недостаточно" />
+            <label for="q2_4" data-ru="Недостаточно" data-uz="Yetarli emas">Недостаточно</label>
+          </div>
+
+          <h3
+            data-ru="3. Удовлетворила ли вас скорость ответа и оформления авиабилета?"
+            data-uz="3. Murojaatingizga javob berish va aviabilet rasmiylashtirish tezligi sizni qoniqtirdimi?"
+          >
+            3. Удовлетворила ли вас скорость ответа и оформления авиабилета?
+          </h3>
+          <div class="form-group">
+            <input type="radio" id="q3_1" name="q3_speed" value="Очень быстро" required />
+            <label for="q3_1" data-ru="Очень быстро" data-uz="Juda tez">Очень быстро</label><br />
+            <input type="radio" id="q3_2" name="q3_speed" value="Удовлетворительно" />
+            <label for="q3_2" data-ru="Удовлетворительно" data-uz="Qoniqarli">Удовлетворительно</label><br />
+            <input type="radio" id="q3_3" name="q3_speed" value="Средне" />
+            <label for="q3_3" data-ru="Средне" data-uz="O'rtacha">Средне</label><br />
+            <input type="radio" id="q3_4" name="q3_speed" value="Медленно" />
+            <label for="q3_4" data-ru="Медленно" data-uz="Sekin">Медленно</label>
+          </div>
+
+          <h3
+            data-ru="4. Что стало главной причиной покупки авиабилета через нас?"
+            data-uz="4. Biz orqali aviabilet xarid qilishingizga eng katta sabab nima bo'ldi?"
+          >
+            4. Что стало главной причиной покупки авиабилета через нас?
+          </h3>
+          <div class="form-group">
+            <input type="radio" id="q4_1" name="q4_reason" value="Хорошая цена" required />
+            <label for="q4_1" data-ru="Хорошая цена" data-uz="Yaxshi narx">Хорошая цена</label><br />
+            <input type="radio" id="q4_2" name="q4_reason" value="Быстрый сервис" />
+            <label for="q4_2" data-ru="Быстрый сервис" data-uz="Tez xizmat">Быстрый сервис</label><br />
+            <input type="radio" id="q4_3" name="q4_reason" value="Рекомендация менеджера" />
+            <label for="q4_3" data-ru="Рекомендация менеджера" data-uz="Menejer tavsiyasi">Рекомендация менеджера</label><br />
+            <input type="radio" id="q4_4" name="q4_reason" value="Доверие / работали раньше" />
+            <label for="q4_4" data-ru="Доверие / работали раньше" data-uz="Ishonch / oldin ham ishlaganman">Доверие / работали раньше</label><br />
+            <input type="radio" id="q4_5" name="q4_reason" value="Рекомендации знакомых" />
+            <label for="q4_5" data-ru="Рекомендации знакомых" data-uz="Tanishlar tavsiyasi">Рекомендации знакомых</label><br />
+            <input type="radio" id="q4_6" name="q4_reason" value="Другая причина" />
+            <label for="q4_6" data-ru="Другая причина" data-uz="Boshqa sabab">Другая причина</label>
+          </div>
+
+          <h3
+            data-ru="5. Порекомендовали бы вы нашу авиакассу своим близким?"
+            data-uz="5. Bizning aviakassa xizmatimizni yaqinlaringizga tavsiya qilgan bo'larmidingiz?"
+          >
+            5. Порекомендовали бы вы нашу авиакассу своим близким?
+          </h3>
+          <div class="form-group">
+            <p class="nps-scale-labels">
+              <span data-ru="0 — точно нет" data-uz="0 — umuman tavsiya qilmayman">0 — точно нет</span>
+              <span data-ru="5 — обязательно" data-uz="5 — albatta tavsiya qilaman">5 — обязательно</span>
+            </p>
+            <div class="rating-section">
+              <div class="rating-group nps-group">
+                <input type="radio" id="nps0" name="q5_nps" value="0" required /><label for="nps0">0</label>
+                <input type="radio" id="nps1" name="q5_nps" value="1" /><label for="nps1">1</label>
+                <input type="radio" id="nps2" name="q5_nps" value="2" /><label for="nps2">2</label>
+                <input type="radio" id="nps3" name="q5_nps" value="3" /><label for="nps3">3</label>
+                <input type="radio" id="nps4" name="q5_nps" value="4" /><label for="nps4">4</label>
+                <input type="radio" id="nps5" name="q5_nps" value="5" /><label for="nps5">5</label>
+              </div>
+            </div>
+          </div>
+
+          <h3
+            data-ru="6. Какие предложения или замечания вы бы высказали для улучшения нашего сервиса?"
+            data-uz="6. Xizmatimizni yanada yaxshilash uchun qanday taklif yoki fikr bildirgan bo'lardingiz?"
+          >
+            6. Какие предложения или замечания вы бы высказали для улучшения нашего сервиса?
+          </h3>
+          <div class="form-group">
+            <textarea
+              id="q6_suggestions"
+              name="q6_suggestions"
+              rows="6"
+            ></textarea>
+          </div>
+
+          <h3
+            data-ru="7. Если бы вы рекомендовали нас друзьям, что бы вы сказали в первую очередь?"
+            data-uz="7. Agar bizni do'stlaringizga tavsiya qilsangiz, eng ko'p nimani aytgan bo'lardingiz?"
+          >
+            7. Если бы вы рекомендовали нас друзьям, что бы вы сказали в первую очередь?
+          </h3>
+          <div class="form-group">
+            <textarea
+              id="q7_recommendation"
+              name="q7_recommendation"
+              rows="6"
+              placeholder='Например: "Очень быстро нашли билет", "Хорошая цена", "Надёжная авиакасса"'
+              data-ru-placeholder='Например: "Очень быстро нашли билет", "Хорошая цена", "Надёжная авиакасса"'
+              data-uz-placeholder='Masalan: "Juda tez bilet topib berdi", "Narxi yaxshi bo&apos;ldi", "Ishonchli aviakassa"'
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            data-ru="Отправить отзыв"
+            data-uz="Sharhni yuborish"
+          >
+            <span class="btn-text">Отправить отзыв</span>
+            <span class="btn-spinner"><div class="spinner"></div></span>
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p
+        data-ru='Спасибо за ваш отзыв! Авиакасса "Oks Tours" ценит каждого клиента и стремится к лучшему сервису ✈️'
+        data-uz='Sharhingiz uchun rahmat! "Oks Tours" aviakassasi har bir mijozni qadrlaydi va eng yaxshi xizmat ko&apos;rsatishga intiladi ✈️'
+      >
+        Спасибо за ваш отзыв! Авиакасса "Oks Tours" ценит каждого клиента и стремится к лучшему сервису ✈️
+      </p>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div id="thankYouModal" class="modal">
+      <div class="modal-content">
+        <h2
+          data-ru="🎉 Спасибо за ваш отзыв!"
+          data-uz="🎉 Sharhingiz uchun rahmat!"
+        >
+          🎉 Спасибо за ваш отзыв!
+        </h2>
+        <p
+          data-ru="Ваш отзыв успешно отправлен. Мы ценим ваше мнение!"
+          data-uz="Sizning sharhingiz muvaffaqiyatli yuborildi. Biz sizning fikringizni qadrlaymiz!"
+        >
+          Ваш отзыв успешно отправлен. Мы ценим ваше мнение!
+        </p>
+        <button
+          class="modal-close"
+          onclick="closeModal()"
+          data-ru="Закрыть"
+          data-uz="Yopish"
+        >
+          Закрыть
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Confetti -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Theme toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+
+    <script src="avia-script.js"></script>
+  </body>
+</html>

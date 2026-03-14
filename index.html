@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Обратная связь Oks Tours</title>
-    <link rel="icon" type="image/png" href="ico.png" />
+    <link rel="icon" type="image/png" href="icoLogo.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -14,7 +14,7 @@
           <button id="langRu" class="lang-btn active">РУ</button>
           <button id="langUz" class="lang-btn">UZ</button>
         </div>
-        <img src="oks.png" alt="Oks Tours" class="logo" />
+        <img src="png02.png" alt="Oks Tours" class="logo" />
         <p
           data-ru="Ваш незабываемый отдых начинается здесь!"
           data-uz="Sizning unutilmas sayohatingiz bu yerda boshlanadi!"
@@ -25,6 +25,14 @@
     </header>
 
     <main class="container">
+      <!-- Прогресс-бар -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <span class="progress-bar-text" id="progressText" data-ru-template="Заполнено: {n} из {total}" data-uz-template="To'ldirilgan: {n} / {total}">Заполнено: 0 из 9</span>
+      </div>
+
       <section class="feedback-form-section">
         <h2
           data-ru="Поделитесь впечатлениями о поездке"
@@ -61,20 +69,28 @@
             >
             <input type="text" id="name" name="name" required />
           </div>
-          <div class="form-group">
+          <div class="form-group" style="position:relative">
             <label
               for="travelDate"
               data-ru="Дата поездки:"
               data-uz="Safar sanasi:"
               >Дата поездки:</label
             >
-            <input
-              type="date"
-              id="travelDate"
-              name="travelDate"
-              required
-              placeholder="дд . 12 . гггг"
-            />
+            <div class="date-input-wrapper">
+              <input
+                type="text"
+                id="travelDate"
+                name="travelDate"
+                required
+                placeholder="дд.мм.гггг"
+                data-ru-placeholder="дд.мм.гггг"
+                data-uz-placeholder="kk.oo.yyyy"
+                readonly
+                autocomplete="off"
+              />
+              <svg class="date-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div id="datepicker" class="datepicker"></div>
           </div>
           <div class="form-group">
             <label
@@ -638,15 +654,16 @@
               name="difficulties"
               value="Да"
             /><label for="difficultiesYes" data-ru="Да" data-uz="Ha">Да</label>
-            <textarea
-              id="difficultiesDescription"
-              name="difficultiesDescription"
-              rows="4"
-              placeholder="Если да, опишите, пожалуйста:"
-              data-ru-placeholder="Если да, опишите, пожалуйста:"
-              data-uz-placeholder="Agar bo'lgan bo'lsa, iltimos, batafsil yozing:"
-              style="display: none"
-            ></textarea>
+            <div class="textarea-reveal" id="difficultiesReveal">
+              <textarea
+                id="difficultiesDescription"
+                name="difficultiesDescription"
+                rows="4"
+                placeholder="Если да, опишите, пожалуйста:"
+                data-ru-placeholder="Если да, опишите, пожалуйста:"
+                data-uz-placeholder="Agar bo'lgan bo'lsa, iltimos, batafsil yozing:"
+              ></textarea>
+            </div>
           </div>
 
           <h3
@@ -791,12 +808,14 @@
               data-uz="Ha, elektron pochta orqali:"
               >Да, по e-mail:</label
             >
-            <input
-              type="email"
-              id="newsletterEmail"
-              name="newsletterEmail"
-              style="display: none"
-            /><br />
+            <div class="textarea-reveal" id="newsletterReveal">
+              <input
+                type="email"
+                id="newsletterEmail"
+                name="newsletterEmail"
+                placeholder="email@example.com"
+              />
+            </div><br />
             <input
               type="radio"
               id="newsletterNo"
@@ -810,7 +829,8 @@
             data-ru="Отправить отзыв"
             data-uz="Sharhni yuborish"
           >
-            Отправить отзыв
+            <span class="btn-text">Отправить отзыв</span>
+            <span class="btn-spinner"><div class="spinner"></div></span>
           </button>
         </form>
       </section>
@@ -851,6 +871,17 @@
         </button>
       </div>
     </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Confetti -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Theme toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
 
     <script src="script.js"></script>
   </body>

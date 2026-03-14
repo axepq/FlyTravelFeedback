@@ -298,9 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Функция отправки данных формы
     async function sendFormData() {
-        const TOKEN = '8379599422:AAGV6kmeb40rUYxPMDhmW79_rfFidNq6T-Y';
-        const CHAT_IDS = ['521500516', '1776985'];
-        const SEND_MESSAGE_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+        const API_URL = '/api/send';
 
         // Формируем красивое текстовое сообщение
         const consultationRating = document.querySelector('input[name="consultation"]:checked') ? document.querySelector('input[name="consultation"]:checked').value : 'Не оценено';
@@ -462,45 +460,16 @@ ${divider}
 📊 *${currentLang === 'ru' ? 'ОБЩИЙ СРЕДНИЙ БАЛЛ' : 'UMUMIY O\'RTACHA BALL'}: ${totalAvg}/5*
 ${t.reviewDate} ${new Date().toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'uz-UZ')}*`;
 
-        // Отправка текстового сообщения в Telegram во все чаты
+        // Отправка через серверный API
         try {
-            let allSuccessful = true;
-            let errorMessages = [];
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: message })
+            });
+            const data = await response.json();
 
-            for (const chatId of CHAT_IDS) {
-                try {
-                    const response = await fetch(SEND_MESSAGE_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            chat_id: chatId,
-                            text: message,
-                            parse_mode: 'Markdown'
-                        })
-                    });
-
-                    const data = await response.json();
-                    if (!data.ok) {
-                        allSuccessful = false;
-                        let errorMessage = 'Неизвестная ошибка';
-                        if (data.description === 'Bad Request: chat not found') {
-                            errorMessage = `❌ Ошибка для чата ${chatId}: Чат не найден. Убедитесь, что бот добавлен в группу/канал и CHAT_ID правильный.`;
-                        } else if (data.description === 'Bad Request: bot was blocked by the user') {
-                            errorMessage = `❌ Ошибка для чата ${chatId}: Бот заблокирован пользователем.`;
-                        } else {
-                            errorMessage = `❌ Ошибка для чата ${chatId}: ${data.description || 'Неизвестная ошибка'}`;
-                        }
-                        errorMessages.push(errorMessage);
-                    }
-                } catch (chatError) {
-                    allSuccessful = false;
-                    errorMessages.push(`❌ Сетевая ошибка для чата ${chatId}: ${chatError.message}`);
-                }
-            }
-
-            if (allSuccessful) {
+            if (data.ok) {
                 showThankYouModal();
                 form.reset();
                 // Сбрасываем reveal, прогресс, звёзды и черновик
@@ -520,7 +489,7 @@ ${t.reviewDate} ${new Date().toLocaleDateString(currentLang === 'ru' ? 'ru-RU' :
                 // Конфетти
                 launchConfetti();
             } else {
-                showToast(errorMessages.join('\n'), 'error');
+                showToast(data.errors ? data.errors.join('\n') : 'Ошибка отправки', 'error');
             }
         } catch (error) {
             showToast('Произошла сетевая ошибка. Проверьте подключение к интернету.', 'error');

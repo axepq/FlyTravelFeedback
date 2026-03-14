@@ -161,9 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ========== SEND FORM DATA ==========
     async function sendFormData() {
-        const TOKEN = '8379599422:AAGV6kmeb40rUYxPMDhmW79_rfFidNq6T-Y';
-        const CHAT_IDS = ['521500516', '1776985'];
-        const SEND_MESSAGE_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+        const API_URL = '/api/send';
 
         const getRadio = (name) => {
             const el = document.querySelector(`input[name="${name}"]:checked`);
@@ -242,32 +240,14 @@ ${divider}
 ${t.reviewDate} ${new Date().toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'uz-UZ')}*`;
 
         try {
-            let allSuccessful = true;
-            let errorMessages = [];
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: message })
+            });
+            const data = await response.json();
 
-            for (const chatId of CHAT_IDS) {
-                try {
-                    const response = await fetch(SEND_MESSAGE_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chat_id: chatId,
-                            text: message,
-                            parse_mode: 'Markdown'
-                        })
-                    });
-                    const data = await response.json();
-                    if (!data.ok) {
-                        allSuccessful = false;
-                        errorMessages.push(`❌ Ошибка для чата ${chatId}: ${data.description || 'Неизвестная ошибка'}`);
-                    }
-                } catch (chatError) {
-                    allSuccessful = false;
-                    errorMessages.push(`❌ Сетевая ошибка для чата ${chatId}: ${chatError.message}`);
-                }
-            }
-
-            if (allSuccessful) {
+            if (data.ok) {
                 showThankYouModal();
                 form.reset();
                 clearDraft();
@@ -284,7 +264,7 @@ ${t.reviewDate} ${new Date().toLocaleDateString(currentLang === 'ru' ? 'ru-RU' :
                 launchConfetti();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                showToast(errorMessages.join('\n'), 'error');
+                showToast(data.errors ? data.errors.join('\n') : 'Ошибка отправки', 'error');
             }
         } catch (error) {
             showToast('Произошла сетевая ошибка. Проверьте подключение к интернету.', 'error');

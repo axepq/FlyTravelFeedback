@@ -30,7 +30,7 @@
         <div class="progress-bar-track">
           <div class="progress-bar-fill" id="progressBar"></div>
         </div>
-        <span class="progress-bar-text" id="progressText" data-ru-template="Заполнено: {n} из {total}" data-uz-template="To'ldirilgan: {n} / {total}">Заполнено: 0 из 7</span>
+        <span class="progress-bar-text" id="progressText" data-ru-template="Заполнено: {n} из {total}" data-uz-template="To'ldirilgan: {n} / {total}">Заполнено: 0 из 8</span>
       </div>
 
       <section class="feedback-form-section">
@@ -172,6 +172,23 @@
               data-ru-placeholder='Например: "Очень быстро нашли билет", "Хорошая цена", "Надёжная авиакасса"'
               data-uz-placeholder='Masalan: "Juda tez bilet topib berdi", "Narxi yaxshi bo&apos;ldi", "Ishonchli aviakassa"'
             ></textarea>
+          </div>
+
+          <h3
+            data-ru="8. Хотите ли вы получать информацию о новых авианаправлениях и спецпредложениях на билеты?"
+            data-uz="8. Yangi avia yo'nalishlar va aviabiletlarga maxsus takliflar haqida ma'lumot olishni istaysizmi?"
+          >
+            8. Хотите ли вы получать информацию о новых авианаправлениях и спецпредложениях на билеты?
+          </h3>
+          <div class="form-group">
+            <input type="radio" id="q8_1" name="q8_newsletter" value="Да, в Telegram" required />
+            <label for="q8_1" data-ru="Да, в Telegram" data-uz="Ha, Telegram orqali">Да, в Telegram</label><br />
+            <input type="radio" id="q8_2" name="q8_newsletter" value="Да, по SMS" />
+            <label for="q8_2" data-ru="Да, по SMS" data-uz="Ha, SMS orqali">Да, по SMS</label><br />
+            <input type="radio" id="q8_3" name="q8_newsletter" value="Да, по WhatsApp" />
+            <label for="q8_3" data-ru="Да, по WhatsApp" data-uz="Ha, WhatsApp orqali">Да, по WhatsApp</label><br />
+            <input type="radio" id="q8_4" name="q8_newsletter" value="Нет, не нужно" />
+            <label for="q8_4" data-ru="Нет, не нужно" data-uz="Yo'q, kerak emas">Нет, не нужно</label>
           </div>
 
           <button

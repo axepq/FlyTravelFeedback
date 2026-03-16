@@ -468,22 +468,20 @@ textarea {
     justify-content: center;
     flex-wrap: wrap;
     gap: 4px;
-    max-width: fit-content;
-    padding: 0 4px;
+    padding: 0;
     margin: 0 auto;
 }
 
 .rating-section .rating-group label {
-    margin: 0 1px;
+    margin: 0;
     cursor: pointer;
-    padding: 10px 10px;
+    padding: 10px;
     border-radius: 10px;
     font-weight: 600;
     font-size: 0.8em;
-    min-width: 40px;
-    max-width: 48px;
+    width: 42px;
     text-align: center;
-    flex: 1;
+    flex: 0 0 auto;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -1070,8 +1068,9 @@ button[type="submit"].ready {
 
     .rating-section td:last-child {
         width: 100%;
-        padding: 4px 14px 12px;
+        padding: 4px 0 12px;
         border-bottom: none;
+        text-align: center;
     }
 
     .rating-section .rating-group {
@@ -1082,8 +1081,10 @@ button[type="submit"].ready {
 
     .rating-section .rating-group label {
         font-size: 1.4em !important;
-        min-width: 36px !important;
-        max-width: 44px !important;
+        width: 40px !important;
+        min-width: unset !important;
+        max-width: unset !important;
+        flex: 0 0 auto !important;
         padding: 4px !important;
     }
 
@@ -1196,13 +1197,15 @@ button[type="submit"].ready {
     }
 
     .rating-section td:last-child {
-        padding: 2px 10px 10px;
+        padding: 2px 0 10px;
     }
 
     .rating-section .rating-group label {
         font-size: 1.25em !important;
-        min-width: 32px !important;
-        max-width: 40px !important;
+        width: 36px !important;
+        min-width: unset !important;
+        max-width: unset !important;
+        flex: 0 0 auto !important;
     }
 
     .form-group input[type="radio"] + label {
@@ -1277,8 +1280,10 @@ button[type="submit"].ready {
 
     .rating-section .rating-group label {
         font-size: 1.1em !important;
-        min-width: 28px !important;
-        max-width: 36px !important;
+        width: 32px !important;
+        min-width: unset !important;
+        max-width: unset !important;
+        flex: 0 0 auto !important;
     }
 
     .form-group input[type="radio"] + label {
@@ -1498,9 +1503,12 @@ button[type="submit"].loading .btn-spinner {
     border: none;
     cursor: pointer;
     font-size: 20px;
+    line-height: 1;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     transition: all 0.3s ease;
 
     background: rgba(255, 255, 255, 0.6);

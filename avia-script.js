@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========== PROGRESS BAR ==========
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
-    const totalSections = 7;
+    const totalSections = 8;
 
     function updateProgress() {
         let filled = 0;
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.querySelector('input[name="q5_nps"]:checked')) filled++;
         if (document.getElementById('q6_suggestions').value.trim()) filled++;
         if (document.getElementById('q7_recommendation').value.trim()) filled++;
+        if (document.querySelector('input[name="q8_newsletter"]:checked')) filled++;
 
         const pct = Math.round((filled / totalSections) * 100);
         progressBar.style.width = pct + '%';
@@ -175,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const q5 = getRadio('q5_nps');
         const q6 = document.getElementById('q6_suggestions').value.trim() || '—';
         const q7 = document.getElementById('q7_recommendation').value.trim() || '—';
+        const q8 = getRadio('q8_newsletter');
 
         const translations = {
             ru: {
@@ -186,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 q5Label: '*5. РЕКОМЕНДАЦИЯ (NPS 0-5)*',
                 q6Label: '*6. ПРЕДЛОЖЕНИЯ И ЗАМЕЧАНИЯ*',
                 q7Label: '*7. ЧТО БЫ ВЫ СКАЗАЛИ ДРУЗЬЯМ*',
+                q8Label: '*8. РАССЫЛКА О СПЕЦПРЕДЛОЖЕНИЯХ*',
                 reviewDate: '📅 *Дата отзыва:'
             },
             uz: {
@@ -197,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 q5Label: '*5. TAVSIYA (NPS 0-5)*',
                 q6Label: '*6. TAKLIF VA FIKRLAR*',
                 q7Label: '*7. DO\'STLARINGIZGA NIMA DEYSIZ*',
+                q8Label: '*8. MAXSUS TAKLIFLAR HAQIDA XABAR*',
                 reviewDate: '📅 *Sharh sanasi:'
             }
         };
@@ -235,6 +239,9 @@ ${t.q6Label}
 
 ${t.q7Label}
 💬 ${q7}
+
+${t.q8Label}
+📩 ${q8}
 
 ${divider}
 ${t.reviewDate} ${new Date().toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : 'uz-UZ')}*`;

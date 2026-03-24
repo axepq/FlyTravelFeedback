@@ -721,6 +721,55 @@ button[type="submit"]:active {
     box-shadow: 0 6px 20px rgba(77, 182, 160, 0.3), inset 0 1px 0 rgba(255,255,255,0.25);
 }
 
+/* Telegram CTA в модалке */
+.modal-telegram {
+    position: relative;
+    margin: 0 0 1.25rem 0;
+    padding: 1rem;
+    border-radius: 16px;
+    background: rgba(0, 136, 204, 0.08);
+    border: 1px solid rgba(0, 136, 204, 0.15);
+}
+
+.modal-telegram p {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.telegram-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: #0088cc;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: inherit;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0, 136, 204, 0.25);
+}
+
+.telegram-btn:hover {
+    background: #006da3;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 136, 204, 0.35);
+}
+
+.telegram-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+body.dark .modal-telegram {
+    background: rgba(0, 136, 204, 0.12);
+    border-color: rgba(0, 136, 204, 0.2);
+}
+
 /* ========== PROGRESS BAR ========== */
 .progress-bar-wrapper {
     margin-bottom: 28px;
